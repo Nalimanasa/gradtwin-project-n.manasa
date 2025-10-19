@@ -1,0 +1,21 @@
+#table ,.th,.td{
+      border:1px solid black;
+      width:400px;
+}
+
+.pending{
+    text-align:center;
+    color:black;
+    background-color:whitesmoke;
+    padding:0px 150px;
+    height:300px;
+    width:100%;
+}
+.approved{
+    text-align:center;
+    color:black;
+    background-color:whitesmoke;
+    padding:0px 150px;
+    height:300px;
+    width:100%;
+}
