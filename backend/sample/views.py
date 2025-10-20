@@ -9,6 +9,9 @@ import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import random
+from rest_framework.decorators import api_view, parser_classes
+from rest_framework.parsers import JSONParser
+
 
 def home(request):
     return HttpResponse("Welcome to GradTwin Project!")
@@ -153,42 +156,6 @@ def approve(request):
 
 def _str_(self):
     return self.username
-
-
-# @api_view(["POST"])
-# def feedback(request):
-#     print(request.body)
-#     data = request.data
-
-#     bauxite = float(data.get('bauxite', 0))
-#     soda = float(data.get('soda', 0))
-#     temperature = float(data.get('temperature', 0))
-#     moisture = float(data.get("moisture", 0))
-#     alumina = float(data.get("alumina", 0))
-   
-#     dry_bauxite = bauxite * (1 - moisture / 100)
-#     alumina_content = dry_bauxite * (alumina / 100)
-#     # Simple simulation
-#     aluminum_yield = (alumina_content * 0.4) - (temperature * 0.01) + (soda * 0.1)
-#     waste = bauxite - aluminum_yield
-#     feedback_msg = random.choice([
-#         "Try increasing temperature slightly.",
-#         "Reduce soda usage to lower red mud waste.",
-#         "Increase bauxite purity for better yield.",
-#         "Current settings are near optimal!"
-#     ])
-
-#     return Response({
-#         "aluminum_yield": round(aluminum_yield, 2),
-#         "waste": round(waste, 2),
-#         "feedback": feedback_msg
-#     })
-
-
-from rest_framework.decorators import api_view, parser_classes
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
-import random
 
 @api_view(['POST'])
 @parser_classes([JSONParser])  # ensures only JSON is parsed
