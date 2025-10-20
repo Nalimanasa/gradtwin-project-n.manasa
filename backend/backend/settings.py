@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9^3m2se)6)kk-fdn&o4h4jnp^!$sorf8(enm*o)b_fr_f+h1h0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['smart-aluminum-extraction-and-resource-xmlw.onrender.com']
+ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
