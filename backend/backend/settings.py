@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'gradtwin',
-        'USER':'graduser',
-        'PASSWORD':'MAnu123',
-        'HOST':'127.0.0.1',
-        'PORT':'3306',
+        'NAME': os.environ.get('DB_NAME','gradtwin'),
+        'USER': os.environ.get('DB_USER','graduser'),
+        'PASSWORD': os.environ.get('DB_PASSWORD','MAnu123'),
+        'HOST': os.environ.get('DB_HOST','127.0.0.1'),  # Use the host provided by your database
+        'PORT': os.environ.get('DB_PORT', '3306'),
     }
 }
 
@@ -129,6 +129,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "frontend", "build", "static"),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
