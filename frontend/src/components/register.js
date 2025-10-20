@@ -49,7 +49,7 @@ function Register(){
         pincode:'',
         address:''
             });
-             fetchItems();
+             fetchItems(items);
         })
         .catch(err =>console.error(err));
     };
