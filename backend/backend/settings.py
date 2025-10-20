@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9^3m2se)6)kk-fdn&o4h4jnp^!$sorf8(enm*o)b_fr_f+h1h0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://smart-aluminum-extraction-and-resource-xmlw.onrender.com']
 
 
 # Application definition
@@ -128,6 +128,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "frontend", "build", "static"),
