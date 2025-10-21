@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,9 @@ SECRET_KEY = 'django-insecure-9^3m2se)6)kk-fdn&o4h4jnp^!$sorf8(enm*o)b_fr_f+h1h0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['smart-aluminum-extraction-and-resource-xmlw.onrender.com']
+ALLOWED_HOSTS = ['smart-aluminum-extraction-and-resource-xmlw.onrender.com',
+                 '127.0.0.1',
+                 'localhost']
 
 
 # Application definition
@@ -83,11 +86,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME','gradtwin'),
-        'USER': os.environ.get('DB_USER','graduser'),
-        'PASSWORD': os.environ.get('DB_PASSWORD','MAnu123'),
-        'HOST': os.environ.get('DB_HOST','127.0.0.1'),  # Use the host provided by your database
-        'PORT': os.environ.get('DB_PORT', '3306'),
+        'NAME': config('DB_NAME',default='gradtwinproject'),
+        'USER': config('DB_USER',default='root'),
+        'PASSWORD': config('DB_PASSWORD',default='MAnu123'),
+        'HOST': config('DB_HOST',default='127.0.0.1'),  # Use the host provided by your database
+        'PORT': config('DB_PORT',default='3306'),
     }
 }
 
