@@ -16,6 +16,7 @@ from rest_framework.parsers import JSONParser
 
 
 @csrf_exempt
+@require_http_methods(["GET","POST"])
 def admin(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -37,7 +38,8 @@ def register(request):
     # return JsonResponse(list(items),safe=False)
     return HttpResponse('this is register page')
                         
-@csrf_exempt    
+@csrf_exempt
+@require_http_methods(["POST","GET"])    
 def register_api(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode("utf-8"))
