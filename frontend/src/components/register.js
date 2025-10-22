@@ -25,14 +25,14 @@ function Register(){
     },[]);
 
     const fetchItems=() =>{
-        axios.get("http://127.0.0.1:8000/api/register_api/")
+        axios.get(`${process.env.REACT_APP_API_URL}/api/register_api/`)
         .then(res =>setItems(res.data))
         .catch(err =>console.error(err));
     };
 
     const addItem = (e) =>{
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/register_api/',form ,{
+        axios.post(`${process.env.REACT_APP_API_URL}/api/register_api/`,form ,{
   headers: { "Content-Type": "application/json" }
 })
         .then(() =>{
