@@ -30,7 +30,8 @@ DEBUG =os.environ.get('DEBUG','False')==True
 # ALLOWED_HOSTS = ['smart-aluminum-extraction-and-resource-xmlw.onrender.com',
 #                  '127.0.0.1',
 #                  'localhost']
-ALLOWED_HOSTS=os.environ.get('ALLOWED_HOSTS','https://smart-aluminum-extraction-and-resource-xmlw.onrender.com').split(',')
+ALLOWED_HOSTS=os.environ.get('ALLOWED_HOSTS',
+                             'https://smart-aluminum-extraction-and-resource-xmlw.onrender.com',).split(',')
 
 # Application definition
 
@@ -65,7 +66,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         "DIRS": [os.path.join(BASE_DIR, "frontend_build")],
+         "DIRS": [os.path.join(BASE_DIR, "../frontend/build")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +131,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
+]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
