@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,15 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9^3m2se)6)kk-fdn&o4h4jnp^!$sorf8(enm*o)b_fr_f+h1h0'
-
+# SECRET_KEY = 'django-insecure-9^3m2se)6)kk-fdn&o4h4jnp^!$sorf8(enm*o)b_fr_f+h1h0'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =os.environ.get('DEBUG','False')==True
 
-ALLOWED_HOSTS = ['smart-aluminum-extraction-and-resource-xmlw.onrender.com',
-                 '127.0.0.1',
-                 'localhost']
-
+# ALLOWED_HOSTS = ['smart-aluminum-extraction-and-resource-xmlw.onrender.com',
+#                  '127.0.0.1',
+#                  'localhost']
+ALLOWED_HOSTS=os.environ.get('ALLOWED_HOSTS','https://smart-aluminum-extraction-and-resource-xmlw.onrender.com').split(',')
 
 # Application definition
 
@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME',default='gradtwinproject'),
-        'USER': config('DB_USER',default='root'),
-        'PASSWORD': config('DB_PASSWORD',default='MAnu123'),
-        'HOST': config('DB_HOST',default='127.0.0.1'),  # Use the host provided by your database
-        'PORT': config('DB_PORT',default='3306'),
+        'NAME': os.environ.get('DB_NAME',default='gradtwinproject'),
+        'USER': os.environ.get('DB_USER',default='root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD',default='MAnu123'),
+        'HOST': os.environ.get('DB_HOST',default='127.0.0.1'),  # Use the host provided by your database
+        'PORT': os.environ.get('DB_PORT',default='3306'),
     }
 }
 
@@ -131,24 +131,33 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend", "build", "static"),
-]
-# Default primary key field type
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "frontend", "build", "static"),
+# ]
+# # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOW_ALL_ORIGINS = True  
+CORS_ALLOW_ALL_ORIGINS = False  
+
+CORS_ALLOWED_ORIGINS = [
+    'https://smart-aluminum-extraction-and-resource.onrender.com'
+]  
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+     'https://smart-aluminum-extraction-and-resource.onrender.com'
+    # "http://localhost:3000",
+    # "http://127.0.0.1:3000",
 ]
 
+LOGGING={
+    'version': 1,
+    'disable_existing_loggers':False,
+}
