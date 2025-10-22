@@ -2,7 +2,7 @@ from django.http import HttpResponse ,JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
-from .models import Item 
+from sample.models import Item 
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -11,6 +11,22 @@ from rest_framework.response import Response
 import random
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
+
+
+
+
+@csrf_exempt
+def admin(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.is_staff:
+            login(request, user)
+            return JsonResponse({"message": "Admin login successful"})
+        else:
+            return JsonResponse({"error": "Invalid credentials"}, status=400)
+    return render(request, 'admin_login.html')  
 
 
 def home(request):
