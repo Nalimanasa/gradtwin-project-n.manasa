@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME',default='gradtwinproject'),
-        'USER': os.environ.get('DB_USER',default='root'),
-        'PASSWORD': os.environ.get('DB_PASSWORD',default='MAnu123'),
-        'HOST': os.environ.get('DB_HOST',default='127.0.0.1'),  # Use the host provided by your database
-        'PORT': os.environ.get('DB_PORT',default='3306'),
+        'NAME': os.environ.get('RENDER_DB_NAME',default='gradtwinproject'),
+        'USER': os.environ.get('RENDER_DB_USER',default='root'),
+        'PASSWORD': os.environ.get('RENDER_DB_PASSWORD',default='MAnu123'),
+        'HOST': os.environ.get('RENDER_DB_HOST',default='127.0.0.1'),  # Use the host provided by your database
+        'PORT': os.environ.get('RENDER_DB_PORT',default='3306'),
     }
 }
 
